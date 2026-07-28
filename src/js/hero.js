@@ -14,5 +14,15 @@ export function initHero() {
     video.addEventListener('loadeddata', markReady, { once: true });
   }
 
+  // Loop manually instead of the native `loop` attribute: Firefox has been
+  // observed hanging/freezing on this crossfade-encoded file's native
+  // loop-seek. Explicit ended -> currentTime=0 -> play() is more reliable
+  // across browsers, at the cost of a possible single-frame stutter at the
+  // loop point (acceptable trade for "doesn't randomly freeze").
+  video.addEventListener('ended', () => {
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  });
+
   video.addEventListener('error', () => video.remove());
 }

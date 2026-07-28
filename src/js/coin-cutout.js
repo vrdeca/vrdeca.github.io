@@ -13,13 +13,19 @@ export function initCoinCutout() {
   const video = container?.querySelector('video');
   if (!container || !video) return;
 
+  // Loop manually — see hero.js for why native `loop` is avoided here too.
+  video.addEventListener('ended', () => {
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  });
+
   const canvas = document.createElement('canvas');
   canvas.width = RENDER_SIZE;
   canvas.height = RENDER_SIZE;
   canvas.setAttribute('aria-hidden', 'true');
+  // Appended after the video so it paints on top (see hero.css) — the video
+  // itself stays visibility:visible so Safari doesn't pause it.
   container.appendChild(canvas);
-  video.style.visibility = 'hidden';
-  video.style.position = 'absolute';
 
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   if (!ctx) return;
