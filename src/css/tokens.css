@@ -1,0 +1,81 @@
+/* ==========================================================================
+   VRHS DECA — Design Tokens
+   Brand pulled from the Vista Ridge Rangers star-and-horseman mark.
+   ========================================================================== */
+
+:root {
+  /* Brand colors */
+  --color-red-600: #a5121c;
+  --color-red-500: #cb1a26;
+  --color-red-400: #e5232f;
+  --color-black-900: #0a0a0b;
+  --color-black-800: #141416;
+  --color-black-700: #1e1f22;
+  --color-white: #ffffff;
+  --color-cream: #f7f5f2;
+  --color-silver-300: #d8dadc;
+  --color-silver-500: #a7abaf;
+  --color-gray-600: #5c6066;
+  --color-gray-700: #3a3d42;
+
+  /* Accent — used sparingly, nods to DECA Inc. blue */
+  --color-accent-blue: #0c4da2;
+
+  /* Semantic */
+  --color-bg: var(--color-white);
+  --color-bg-dark: var(--color-black-900);
+  --color-text: var(--color-black-900);
+  --color-text-invert: var(--color-white);
+  --color-text-muted: var(--color-gray-600);
+  --color-brand: var(--color-red-500);
+  --color-brand-strong: var(--color-red-600);
+  --color-border: rgba(10, 10, 11, 0.1);
+  --color-border-invert: rgba(255, 255, 255, 0.16);
+
+  /* Typography */
+  --font-display: 'Anton', 'Arial Narrow', sans-serif;
+  --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --fs-hero: clamp(3.2rem, 8vw, 7.5rem);
+  --fs-h1: clamp(2.4rem, 5vw, 4.2rem);
+  --fs-h2: clamp(1.9rem, 3.6vw, 3rem);
+  --fs-h3: clamp(1.4rem, 2.2vw, 1.9rem);
+  --fs-body-lg: clamp(1.05rem, 1.4vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.95rem;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  --space-10: 4rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
+
+  /* Layout */
+  --content-max: 1280px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 600ms;
+
+  /* Elevation */
+  --shadow-sm: 0 2px 8px rgba(10, 10, 11, 0.08);
+  --shadow-md: 0 8px 24px rgba(10, 10, 11, 0.12);
+  --shadow-lg: 0 20px 60px rgba(10, 10, 11, 0.22);
+  --shadow-red-glow: 0 0 40px rgba(203, 26, 38, 0.35);
+
+  --nav-height: 84px;
+}

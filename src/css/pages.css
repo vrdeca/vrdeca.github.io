@@ -1,0 +1,270 @@
+/* ==========================================================================
+   Page-specific styles for Members / Competitors / Parents.
+   Shared tokens/components already cover buttons, cards, section headers,
+   reveal-on-scroll, etc. — add only what those don't already provide.
+   ========================================================================== */
+
+/* Generic bordered resource/info card + grid — used for volunteer ops,
+   study material clusters, online challenges, etc. */
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+@media (max-width: 900px) { .resource-grid { grid-template-columns: 1fr; } }
+
+.resource-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  height: 100%;
+  transition: transform var(--dur-base) var(--ease-out-quart), box-shadow var(--dur-base), border-color var(--dur-base);
+}
+.resource-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: transparent; }
+.resource-card .tag-pill {
+  display: inline-block;
+  padding: 0.3em 0.9em;
+  border-radius: var(--radius-pill);
+  background: rgba(203, 26, 38, 0.1);
+  color: var(--color-brand-strong);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+.resource-card h3 {
+  font-family: var(--font-body);
+  text-transform: none;
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: var(--space-2);
+}
+.resource-card p { color: var(--color-text-muted); font-size: var(--fs-small); margin: 0; }
+.resource-card .resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-4);
+  font-weight: 700;
+  font-size: var(--fs-small);
+  color: var(--color-brand-strong);
+}
+.resource-card .resource-link svg { width: 1em; height: 1em; }
+
+/* Officer pathway — 4-step process explainer */
+.pathway-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+@media (max-width: 760px) { .pathway-steps { grid-template-columns: 1fr; } }
+.pathway-step {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6) var(--space-5) var(--space-5);
+}
+.pathway-step .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--color-black-900);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: var(--space-4);
+}
+.pathway-step h4 {
+  font-family: var(--font-body);
+  text-transform: none;
+  font-weight: 800;
+  font-size: var(--fs-body);
+  margin-bottom: var(--space-2);
+}
+.pathway-step p { color: var(--color-text-muted); font-size: var(--fs-small); margin: 0; }
+
+/* Officer bio cards */
+.officer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+@media (max-width: 900px) { .officer-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .officer-grid { grid-template-columns: 1fr; } }
+.officer-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  text-align: center;
+  transition: transform var(--dur-base) var(--ease-out-quart), box-shadow var(--dur-base);
+}
+.officer-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.officer-avatar {
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  margin: 0 auto var(--space-4);
+  background: linear-gradient(135deg, var(--color-black-800), var(--color-brand));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--color-white);
+}
+.officer-card h3 { font-size: 1.1rem; margin-bottom: 2px; }
+.officer-card .role {
+  display: block;
+  color: var(--color-brand-strong);
+  font-weight: 800;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-3);
+}
+.officer-card .bio { color: var(--color-text-muted); font-size: var(--fs-small); margin: 0; }
+
+/* Classroom-code / key-detail callout banner */
+.code-callout {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  background: var(--color-black-900);
+  color: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6) var(--space-8);
+}
+.code-callout .code-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-silver-300);
+  margin-bottom: 6px;
+}
+.code-callout .code-value {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px dashed rgba(255, 255, 255, 0.35);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+}
+.code-callout p { color: var(--color-silver-300); margin: 0; max-width: 40ch; font-size: var(--fs-small); }
+
+/* Numbered checklist (join steps) */
+.step-list { display: flex; flex-direction: column; gap: var(--space-5); counter-reset: steplist; }
+.step-list li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+.step-list li::before {
+  counter-increment: steplist;
+  content: counter(steplist);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-list h4 { font-size: 1rem; font-weight: 800; font-family: var(--font-body); text-transform: none; margin-bottom: 4px; }
+.step-list p { color: var(--color-text-muted); font-size: var(--fs-small); margin: 0; }
+
+/* Cost breakdown list */
+.cost-list { display: flex; flex-direction: column; border-top: 1px solid var(--color-border); }
+.cost-list .cost-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.cost-list .cost-row .cost-name { font-weight: 800; font-size: var(--fs-body-lg); }
+.cost-list .cost-row .cost-desc { color: var(--color-text-muted); font-size: var(--fs-small); margin-top: 2px; }
+.cost-list .cost-row .cost-amount {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--color-brand-strong);
+  white-space: nowrap;
+}
+
+/* Advisor / contact card */
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  background: var(--color-cream);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+}
+.contact-card .contact-avatar {
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--color-black-800), var(--color-brand));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  color: var(--color-white);
+}
+.contact-card h3 { font-size: var(--fs-h3); margin-bottom: var(--space-2); }
+.contact-card .contact-meta { display: flex; flex-direction: column; gap: 4px; color: var(--color-text-muted); font-size: var(--fs-small); margin-bottom: var(--space-4); }
+.contact-card .contact-meta a { color: var(--color-brand-strong); font-weight: 700; }
+.contact-card .contact-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+
+/* FAQ accordion (light theme, mirrors footer's dark accordion pattern) */
+.faq-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.faq-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5) var(--space-6);
+}
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 800;
+  font-size: var(--fs-body-lg);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+';
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--color-brand);
+  flex-shrink: 0;
+}
+.faq-item[open] summary::after { content: '\2212'; }
+.faq-item p { color: var(--color-text-muted); margin: var(--space-4) 0 0; }
+
+/* Involvement / volunteer card meta row */
+.involve-meta {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+}
+.involve-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.involve-meta svg { width: 1em; height: 1em; }
