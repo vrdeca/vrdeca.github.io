@@ -598,7 +598,7 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   object-fit: contain;
   display: block;
   backface-visibility: hidden;
-  animation: coin-loader-spin 2.4s linear infinite;
+  animation: coin-loader-spin 2.64s linear infinite;
 }
 .coin-face-back {
   animation-name: coin-loader-spin-back;
