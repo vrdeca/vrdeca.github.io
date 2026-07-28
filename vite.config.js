@@ -10,6 +10,7 @@ export default defineConfig({
         members: resolve(__dirname, 'members/index.html'),
         competitors: resolve(__dirname, 'competitors/index.html'),
         parents: resolve(__dirname, 'parents/index.html'),
+        volunteers: resolve(__dirname, 'volunteers/index.html'),
         calendar: resolve(__dirname, 'calendar/index.html'),
       },
     },

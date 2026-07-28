@@ -1,4 +1,4 @@
-import { NAV_LINKS } from '../data/site-config.js';
+import { NAV_LINKS, ASSET_VERSION } from '../data/site-config.js';
 
 export function renderNav(activePath = '/') {
   const links = NAV_LINKS.map((link) => {
@@ -10,7 +10,7 @@ export function renderNav(activePath = '/') {
   <header class="site-header" id="site-header">
     <div class="nav-inner">
       <a href="${import.meta.env.BASE_URL}" class="brand-mark" aria-label="Vista Ridge DECA home">
-        <img src="${import.meta.env.BASE_URL}assets/images/vrhs-deca-logo.jpg" alt="Vista Ridge High School Rangers star and horseman crest" width="56" height="56" />
+        <img src="${import.meta.env.BASE_URL}assets/images/vrhs-deca-logo.jpg?v=${ASSET_VERSION}" alt="Vista Ridge High School Rangers star and horseman crest" width="56" height="56" />
         <span class="brand-mark-text">Vista Ridge<span>DECA</span></span>
       </a>
       <nav class="nav-links" id="nav-links">

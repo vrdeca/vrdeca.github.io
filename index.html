@@ -7,6 +7,13 @@
   <meta name="description" content="Vista Ridge High School DECA — one of the nation's top competitive chapters. Join, compete, and lead." />
 </head>
 <body>
+  <div id="coin-loader" class="coin-loader" aria-hidden="true">
+    <div id="coin-loader-coin" class="coin-loader-coin">
+      <img src="/assets/images/coin-loader.png?v=2" alt="" />
+    </div>
+    <div id="coin-loader-count" class="coin-loader-count">3</div>
+  </div>
+
   <a href="#main" class="skip-link">Skip to content</a>
   <div id="header-root"></div>
 
@@ -14,13 +21,13 @@
     <section class="hero">
       <div class="hero-media">
         <video id="hero-video" class="hero-video" autoplay muted playsinline preload="none">
-          <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
+          <source src="/assets/video/hero-bg.mp4?v=2" type="video/mp4" />
         </video>
         <div class="hero-gradient"></div>
       </div>
       <div class="hero-coin" aria-hidden="true">
         <video autoplay muted playsinline preload="auto">
-          <source src="/assets/video/coin-loop-web.mp4" type="video/mp4" />
+          <source src="/assets/video/coin-loop-web.mp4?v=2" type="video/mp4" />
         </video>
       </div>
       <div class="hero-content">
@@ -54,6 +61,8 @@
       </div>
     </section>
 
+    <div id="japan-trip-root"></div>
+
     <section class="stat-section">
       <div class="container">
         <div class="section-head" data-reveal>
@@ -78,7 +87,7 @@
         <div class="section-head" data-reveal>
           <p class="eyebrow">Why Vista Ridge DECA</p>
           <h2>A chapter built for people who want more.</h2>
-          <p>Nearly 200 members strong, with a track record of qualifying for state and international competition year after year — DECA is where Rangers turn ambition into results.</p>
+          <p>More than 200 members strong, with a track record of qualifying for state and international competition year after year — DECA is where Rangers turn ambition into results.</p>
         </div>
         <div class="event-grid" data-reveal-group>
           <div data-reveal>
@@ -139,7 +148,10 @@
       <div class="container" data-reveal>
         <p class="eyebrow">Ready when you are</p>
         <h2 style="font-size:var(--fs-h1);max-width:16ch;margin:var(--space-2) auto var(--space-6);">Your DECA story starts here.</h2>
-        <a href="%BASE_URL%members/#join" class="btn btn-primary">Join Vista Ridge DECA</a>
+        <div style="display:flex;gap:var(--space-4);justify-content:center;flex-wrap:wrap;">
+          <a href="#" id="interest-form-link" class="btn btn-primary" target="_blank" rel="noopener">Fill Out the Interest Form</a>
+          <a href="%BASE_URL%members/#join" class="btn btn-dark">See How to Join</a>
+        </div>
       </div>
     </section>
   </main>
