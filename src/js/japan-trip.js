@@ -41,6 +41,14 @@ function initParallax() {
 
   let active = false;
   let ticking = false;
+  let maxOffset = 0;
+
+  // How far the (taller) photo layer can travel before its top/bottom edge
+  // would come into view — half of its extra height versus the section.
+  // Recomputed on resize since both heights are responsive.
+  function measure() {
+    maxOffset = Math.max(0, (photo.offsetHeight - section.offsetHeight) / 2);
+  }
 
   function update() {
     ticking = false;
@@ -54,7 +62,12 @@ function initParallax() {
     // up as the page scrolls down.
     const sectionCenter = rect.top + rect.height / 2;
     const viewportCenter = window.innerHeight / 2;
-    const delta = (sectionCenter - viewportCenter) * PARALLAX_FACTOR;
+    const raw = (sectionCenter - viewportCenter) * PARALLAX_FACTOR;
+    // Hard clamp — the IntersectionObserver's rootMargin means "active"
+    // starts well before/after the section is actually in view, so the raw
+    // delta can swing far past what the photo's overflow can cover. Never
+    // let it exceed that, or the top/bottom edge shows.
+    const delta = Math.max(-maxOffset, Math.min(maxOffset, raw));
     photo.style.transform = `translateY(${delta}px)`;
   }
 
@@ -64,6 +77,13 @@ function initParallax() {
       requestAnimationFrame(update);
     }
   }
+
+  function onResize() {
+    measure();
+    onScroll();
+  }
+
+  measure();
 
   const io = new IntersectionObserver(
     (entries) => {
@@ -75,5 +95,5 @@ function initParallax() {
   io.observe(section);
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('resize', onResize, { passive: true });
 }

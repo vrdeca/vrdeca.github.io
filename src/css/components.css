@@ -638,7 +638,7 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
    transform on a dedicated layer is GPU-composited and stays smooth. */
 .japan-trip-photo {
   position: absolute;
-  inset: -18% 0;
+  inset: -32% 0;
   background-image: url('/assets/images/japan-fuji.jpg?v=4');
   background-size: cover;
   background-position: right center;
