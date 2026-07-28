@@ -1,5 +1,10 @@
 // Loading-screen intro: a big spinning coin with a quick countdown, then it
 // flies (FLIP-style transform) into its real position in the hero corner.
+// It's the SAME element throughout — re-parented into the hero slot at the
+// end, not handed off to a separately-implemented "real" hero coin — so
+// there's no possibility of the two looking different (which is exactly
+// what happened when the hero used to run a live video+canvas chroma-key
+// while the loader used a static transparent PNG).
 // Shows once per browser session — repeat homepage visits skip straight in.
 const SESSION_KEY = 'vrhs-deca-coin-loader-seen';
 const COUNT_START = 3;
@@ -14,31 +19,33 @@ export function initCoinLoader() {
   const overlay = document.getElementById('coin-loader');
   const coinWrap = document.getElementById('coin-loader-coin');
   const countEl = document.getElementById('coin-loader-count');
-  const realCoin = document.querySelector('.hero-coin');
+  const heroSlot = document.getElementById('hero-coin-slot');
 
-  if (!overlay || !coinWrap || !countEl || !realCoin) {
+  if (!overlay || !coinWrap || !countEl || !heroSlot) {
     overlay?.remove();
     return;
   }
 
-  const skip = () => {
+  // Move the coin into its permanent hero position (no flight animation)
+  // and tear down the loader chrome. Used both for the normal end-of-flight
+  // handoff and for every skip path (already seen, reduced motion, failsafe).
+  const settle = () => {
+    coinWrap.style.transform = '';
+    coinWrap.style.transition = '';
+    heroSlot.appendChild(coinWrap);
     overlay.remove();
-    realCoin.style.opacity = '1';
   };
 
-  if (sessionStorage.getItem(SESSION_KEY)) {
-    skip();
+  if (
+    sessionStorage.getItem(SESSION_KEY) ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ) {
+    settle();
     return;
   }
   sessionStorage.setItem(SESSION_KEY, '1');
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    skip();
-    return;
-  }
-
-  realCoin.style.opacity = '0';
-  const failsafe = setTimeout(skip, FAILSAFE_MS);
+  const failsafe = setTimeout(settle, FAILSAFE_MS);
 
   let count = COUNT_START;
   countEl.textContent = String(count);
@@ -55,13 +62,11 @@ export function initCoinLoader() {
   function fly() {
     countEl.style.opacity = '0';
 
-    // Stop the spin keyframe first — measuring mid-oscillation (squashed to
-    // a sliver) would produce a garbage starting rect for the FLIP math.
-    coinWrap.style.animation = 'none';
-    void coinWrap.offsetWidth; // force reflow so the animation actually stops before we measure
-
+    // The spin keyframes live on the two .coin-face children now, not this
+    // wrapper, so its own layout box — and therefore this rect — stays
+    // stable regardless of rotation phase. No need to freeze anything first.
     const startRect = coinWrap.getBoundingClientRect();
-    const endRect = realCoin.getBoundingClientRect();
+    const endRect = heroSlot.getBoundingClientRect();
     const scale = endRect.width / startRect.width;
     const dx = (endRect.left + endRect.width / 2) - (startRect.left + startRect.width / 2);
     const dy = (endRect.top + endRect.height / 2) - (startRect.top + startRect.height / 2);
@@ -75,9 +80,7 @@ export function initCoinLoader() {
 
     coinWrap.addEventListener('transitionend', () => {
       clearTimeout(failsafe);
-      overlay.remove();
-      realCoin.style.transition = 'opacity 250ms ease';
-      realCoin.style.opacity = '1';
+      settle();
     }, { once: true });
   }
 }

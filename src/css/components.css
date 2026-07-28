@@ -583,12 +583,33 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   width: clamp(140px, 22vw, 240px);
   aspect-ratio: 1;
   filter: drop-shadow(0 10px 40px rgba(0,0,0,0.6));
-  animation: coin-loader-spin 1.1s linear infinite;
+  position: relative;
+  perspective: 900px;
 }
-.coin-loader-coin img { width: 100%; height: 100%; object-fit: contain; display: block; }
+/* Real coin, real two-sided flip: the DECA face and the Vista Ridge Rangers
+   face rotate together, always 180deg apart, each hidden via
+   backface-visibility while facing away — so as one face turns edge-on and
+   vanishes, the other is simultaneously turning face-on into view. */
+.coin-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  backface-visibility: hidden;
+  animation: coin-loader-spin 2.4s linear infinite;
+}
+.coin-face-back {
+  animation-name: coin-loader-spin-back;
+}
 @keyframes coin-loader-spin {
-  0%, 100% { transform: scaleX(1); }
-  50% { transform: scaleX(0.05); }
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+@keyframes coin-loader-spin-back {
+  from { transform: rotateY(180deg); }
+  to { transform: rotateY(540deg); }
 }
 .coin-loader-count {
   margin-top: var(--space-6);

@@ -9,7 +9,8 @@
 <body>
   <div id="coin-loader" class="coin-loader" aria-hidden="true">
     <div id="coin-loader-coin" class="coin-loader-coin">
-      <img src="/assets/images/coin-loader.png?v=2" alt="" />
+      <img class="coin-face coin-face-front" src="/assets/images/coin-loader.png?v=3" alt="" />
+      <img class="coin-face coin-face-back" src="/assets/images/coin-loader-back.png?v=3" alt="" />
     </div>
     <div id="coin-loader-count" class="coin-loader-count">3</div>
   </div>
@@ -21,15 +22,11 @@
     <section class="hero">
       <div class="hero-media">
         <video id="hero-video" class="hero-video" autoplay muted playsinline preload="none">
-          <source src="/assets/video/hero-bg.mp4?v=2" type="video/mp4" />
+          <source src="/assets/video/hero-bg.mp4?v=3" type="video/mp4" />
         </video>
         <div class="hero-gradient"></div>
       </div>
-      <div class="hero-coin" aria-hidden="true">
-        <video autoplay muted playsinline preload="auto">
-          <source src="/assets/video/coin-loop-web.mp4?v=2" type="video/mp4" />
-        </video>
-      </div>
+      <div class="hero-coin" id="hero-coin-slot" aria-hidden="true"></div>
       <div class="hero-content">
         <p class="eyebrow" data-reveal>Be the</p>
         <h1 class="hero-title" data-reveal>Next Big<br />Thing</h1>

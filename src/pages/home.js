@@ -1,7 +1,6 @@
 import '../css/main.css';
 import { mountLayout } from '../js/layout.js';
 import { initHero } from '../js/hero.js';
-import { initCoinCutout } from '../js/coin-cutout.js';
 import { initCoinLoader } from '../js/coin-loader.js';
 import { renderCalendarPreview } from '../js/calendar-preview.js';
 import { renderChart } from '../js/chart.js';
@@ -17,7 +16,6 @@ renderJapanTrip(document.getElementById('japan-trip-root'));
 
 mountLayout({ activePath: '/' });
 initHero();
-initCoinCutout();
 initCoinLoader();
 
 const interestFormLink = document.getElementById('interest-form-link');

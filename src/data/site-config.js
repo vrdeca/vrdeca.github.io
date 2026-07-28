@@ -9,7 +9,7 @@
 // browsers and GitHub's CDN can go on serving old cached bytes indefinitely
 // after we update one of these files. Bump this any time you replace a
 // video/image in public/assets/ so the URL changes and caches bust.
-export const ASSET_VERSION = 2;
+export const ASSET_VERSION = 3;
 
 export const SITE = {
   chapterName: 'Vista Ridge DECA',
