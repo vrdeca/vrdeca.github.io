@@ -320,6 +320,17 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
 }
 .event-card:hover img { transform: scale(1.08); }
 
+/* Cursor-follow tilt (see tilt-card.js) — JS sets the transform inline on
+   every mousemove for snappy, un-lagged tracking, then adds this class on
+   mouseleave just long enough to ease back to neutral. .event-card's own
+   :hover translateY never gets a chance to show since the inline transform
+   is applied immediately on mouseenter, before any hover-only CSS paints. */
+.tilt-card { will-change: transform; }
+.tilt-card.is-resetting { transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1); }
+/* Belt-and-suspenders: guarantees the hovered card wins any overlap with a
+   neighbor even independent of the JS-set inline z-index (tilt-card.js). */
+.tilt-card:hover { z-index: 5; }
+
 .event-card-scrim {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(10,10,11,0.95) 10%, rgba(10,10,11,0.15) 55%, rgba(10,10,11,0.5) 100%);
