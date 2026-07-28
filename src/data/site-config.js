@@ -7,8 +7,8 @@ export const SITE = {
   chapterName: 'Vista Ridge DECA',
   schoolName: 'Vista Ridge High School',
   district: 'Leander ISD',
-  advisorName: '[Advisor Name]',
-  advisorEmail: 'ron.hull@leanderisd.org',
+  advisorName: 'Israel Martinez Jr.',
+  advisorEmail: 'israel.martinez@leanderisd.org',
   googleClassroomCode: '[classroom code]',
 };
 
