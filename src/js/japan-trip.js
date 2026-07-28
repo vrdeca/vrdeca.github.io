@@ -50,9 +50,11 @@ function initParallax() {
     // perfectly centered, growing as it scrolls further away in either
     // direction. Translating the (taller) photo layer by a fraction of this
     // keeps it drifting opposite the scroll, the classic parallax feel.
+    // (sectionCenter - viewportCenter), not the reverse, so the photo moves
+    // up as the page scrolls down.
     const sectionCenter = rect.top + rect.height / 2;
     const viewportCenter = window.innerHeight / 2;
-    const delta = (viewportCenter - sectionCenter) * PARALLAX_FACTOR;
+    const delta = (sectionCenter - viewportCenter) * PARALLAX_FACTOR;
     photo.style.transform = `translateY(${delta}px)`;
   }
 
