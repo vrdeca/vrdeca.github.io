@@ -755,6 +755,20 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   flex-wrap: wrap; gap: var(--space-3);
 }
 
+.site-credit {
+  background: var(--color-black-800);
+  text-align: center;
+  padding-block: var(--space-3);
+}
+.site-credit a {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-gray-600);
+  transition: color var(--dur-fast);
+}
+.site-credit a:hover { color: var(--color-silver-300); }
+
 /* ==========================================================================
    Reveal-on-scroll utility
    ========================================================================== */

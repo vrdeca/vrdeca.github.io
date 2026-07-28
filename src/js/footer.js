@@ -45,5 +45,8 @@ export function renderFooter() {
         </details>
       </div>
     </div>
-  </footer>`;
+  </footer>
+  <div class="site-credit">
+    <a href="https://tjmorales.github.io/portfolio-v5/#top" target="_blank" rel="noopener">Site by Tony Joe Designs</a>
+  </div>`;
 }
