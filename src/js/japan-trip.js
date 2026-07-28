@@ -1,10 +1,15 @@
 import { JAPAN_TRIP_ENABLED, JAPAN_TRIP, EXTERNAL_LINKS } from '../data/site-config.js';
 
+const PARALLAX_FACTOR = 0.22; // fraction of scroll delta the photo trails by — subtle, not disorienting
+const PARALLAX_MIN_WIDTH = 861; // matches the CSS breakpoint where the photo isn't really visible anyway
+
 export function renderJapanTrip(container) {
   if (!container || !JAPAN_TRIP_ENABLED) return;
 
   container.innerHTML = `
     <section class="japan-trip-section" id="japan-trip">
+      <div class="japan-trip-photo" id="japan-trip-photo" aria-hidden="true"></div>
+      <div class="japan-trip-scrim" aria-hidden="true"></div>
       <div class="container japan-trip-inner">
         <div class="japan-trip-copy" data-reveal>
           <p class="eyebrow" style="color:var(--color-red-400);">Special trip</p>
@@ -23,4 +28,50 @@ export function renderJapanTrip(container) {
         </div>
       </div>
     </section>`;
+
+  initParallax();
+}
+
+function initParallax() {
+  const section = document.getElementById('japan-trip');
+  const photo = document.getElementById('japan-trip-photo');
+  if (!section || !photo) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  let active = false;
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    if (!active || window.innerWidth < PARALLAX_MIN_WIDTH) return;
+    const rect = section.getBoundingClientRect();
+    // Distance of the section's center from the viewport's center — 0 when
+    // perfectly centered, growing as it scrolls further away in either
+    // direction. Translating the (taller) photo layer by a fraction of this
+    // keeps it drifting opposite the scroll, the classic parallax feel.
+    const sectionCenter = rect.top + rect.height / 2;
+    const viewportCenter = window.innerHeight / 2;
+    const delta = (viewportCenter - sectionCenter) * PARALLAX_FACTOR;
+    photo.style.transform = `translateY(${delta}px)`;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      active = entries[0]?.isIntersecting ?? false;
+      if (active) onScroll();
+    },
+    { rootMargin: '20% 0px' }
+  );
+  io.observe(section);
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
 }

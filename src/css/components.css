@@ -629,25 +629,37 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
 .japan-trip-section {
   position: relative;
   overflow: hidden;
-  /* Two background layers: the brand gradient (opaque on the left, where the
-     copy sits) fading to transparent on the right, over the Fuji/pagoda
-     photo positioned to show its right portion. Net effect: solid red on
-     the left for text contrast, smoothly dissolving into the photo on the
-     right half — no photo ever sits directly behind the copy. */
-  background-image:
-    linear-gradient(100deg,
-      #1a0507 0%,
-      var(--color-brand-strong) 30%,
-      var(--color-brand-strong) 48%,
-      rgba(165, 18, 28, 0) 78%),
-    url('/assets/images/japan-fuji.jpg?v=4');
-  background-size: cover, cover;
-  background-position: left center, right center;
-  background-repeat: no-repeat, no-repeat;
+  background: var(--color-brand-strong); /* fallback if JS/image fails */
   padding-block: var(--space-12);
+}
+/* Photo lives in its own layer, taller than the section, so JS can
+   translate it vertically on scroll (parallax) without ever exposing an
+   edge. Plain CSS background-position tricks repaint on every scroll frame;
+   transform on a dedicated layer is GPU-composited and stays smooth. */
+.japan-trip-photo {
+  position: absolute;
+  inset: -18% 0;
+  background-image: url('/assets/images/japan-fuji.jpg?v=4');
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+/* Brand-red gradient, opaque where the copy sits, fading to transparent
+   over the photo's right side — this stays pinned to the section (doesn't
+   move with the parallax layer) so the text contrast zone never shifts. */
+.japan-trip-scrim {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(100deg,
+    #1a0507 0%,
+    var(--color-brand-strong) 30%,
+    var(--color-brand-strong) 48%,
+    rgba(165, 18, 28, 0) 78%);
 }
 .japan-trip-inner {
   position: relative;
+  z-index: 1;
 }
 .japan-trip-copy { max-width: 46ch; }
 .japan-trip-copy h2 {
@@ -684,13 +696,11 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
 
 @media (max-width: 860px) {
   /* Photo mostly falls outside the viewport at narrow widths anyway since
-     it's pinned right; fade the whole section to solid red sooner so text
-     never competes with photo detail on small screens. */
-  .japan-trip-section {
-    background-image:
-      linear-gradient(180deg, #1a0507 0%, var(--color-brand-strong) 55%, var(--color-brand-strong) 100%),
-      url('/assets/images/japan-fuji.jpg?v=4');
-    background-position: center, right center;
+     it's pinned right; fade to solid red sooner (and skip parallax — see
+     japan-trip.js, which also checks this breakpoint) so text never
+     competes with photo detail on small screens. */
+  .japan-trip-scrim {
+    background-image: linear-gradient(180deg, #1a0507 0%, var(--color-brand-strong) 55%, var(--color-brand-strong) 100%);
   }
   .japan-trip-copy { max-width: 100%; }
 }
