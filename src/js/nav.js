@@ -9,8 +9,8 @@ export function renderNav(activePath = '/') {
   return `
   <header class="site-header" id="site-header">
     <div class="nav-inner">
-      <a href="/" class="brand-mark" aria-label="Vista Ridge DECA home">
-        <img src="/assets/images/vrhs-deca-logo.jpg" alt="Vista Ridge High School Rangers star and horseman crest" width="56" height="56" />
+      <a href="${import.meta.env.BASE_URL}" class="brand-mark" aria-label="Vista Ridge DECA home">
+        <img src="${import.meta.env.BASE_URL}assets/images/vrhs-deca-logo.jpg" alt="Vista Ridge High School Rangers star and horseman crest" width="56" height="56" />
         <span class="brand-mark-text">Vista Ridge<span>DECA</span></span>
       </a>
       <nav class="nav-links" id="nav-links">

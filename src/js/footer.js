@@ -26,7 +26,7 @@ export function renderFooter() {
       <div class="footer-top">
         <div>
           <div class="footer-brand">
-            <img src="/assets/images/vrhs-deca-logo.jpg" alt="Vista Ridge Rangers crest" width="52" height="52" />
+            <img src="${import.meta.env.BASE_URL}assets/images/vrhs-deca-logo.jpg" alt="Vista Ridge Rangers crest" width="52" height="52" />
             <span class="footer-brand-text">Vista Ridge DECA</span>
           </div>
           <p style="max-width:34ch;font-size:var(--fs-small);">Cedar Park, TX — an official chartered chapter of DECA Inc., preparing emerging leaders and entrepreneurs in business, marketing, finance, hospitality, and management.</p>

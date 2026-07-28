@@ -21,11 +21,16 @@ export const MARQUEE_MESSAGES = [
   'District CDC registration opens soon — talk to your officer team.',
 ];
 
+// import.meta.env.BASE_URL already ends in '/' (e.g. '/VistaRidgeDECA/' in
+// production, '/' in dev) — use it so links work whether the site is hosted
+// at a domain root or a GitHub Pages project subpath.
+const BASE = import.meta.env.BASE_URL;
+
 export const NAV_LINKS = [
-  { label: 'Members', href: '/members/' },
-  { label: 'Competitors', href: '/competitors/' },
-  { label: 'Parents', href: '/parents/' },
-  { label: 'Calendar', href: '/calendar/' },
+  { label: 'Members', href: `${BASE}members/` },
+  { label: 'Competitors', href: `${BASE}competitors/` },
+  { label: 'Parents', href: `${BASE}parents/` },
+  { label: 'Calendar', href: `${BASE}calendar/` },
 ];
 
 export const SOCIAL_LINKS = [
@@ -38,20 +43,20 @@ export const FOOTER_COLUMNS = [
   {
     title: 'Explore',
     links: [
-      { label: 'Home', href: '/' },
-      { label: 'Members', href: '/members/' },
-      { label: 'Competitors', href: '/competitors/' },
-      { label: 'Parents', href: '/parents/' },
-      { label: 'Full Calendar', href: '/calendar/' },
+      { label: 'Home', href: BASE },
+      { label: 'Members', href: `${BASE}members/` },
+      { label: 'Competitors', href: `${BASE}competitors/` },
+      { label: 'Parents', href: `${BASE}parents/` },
+      { label: 'Full Calendar', href: `${BASE}calendar/` },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Join DECA', href: '/members/#join' },
-      { label: 'Study Materials', href: '/competitors/#study-materials' },
-      { label: 'Officer Applications', href: '/members/#leadership' },
-      { label: 'Scholarships', href: '/parents/#scholarships' },
+      { label: 'Join DECA', href: `${BASE}members/#join` },
+      { label: 'Study Materials', href: `${BASE}competitors/#study-materials` },
+      { label: 'Officer Applications', href: `${BASE}members/#leadership` },
+      { label: 'Scholarships', href: `${BASE}parents/#scholarships` },
     ],
   },
   {

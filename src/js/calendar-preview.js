@@ -21,7 +21,7 @@ export function renderCalendarPreview(container) {
   const featured = EVENTS.filter((e) => e.featured);
 
   container.innerHTML = featured.map((ev) => `
-    <a class="event-card" href="/calendar/#${ev.id}" data-reveal>
+    <a class="event-card" href="${import.meta.env.BASE_URL}calendar/#${ev.id}" data-reveal>
       <div style="position:absolute;inset:0;background:${FALLBACK_IMAGE[ev.tier] || FALLBACK_IMAGE.district};"></div>
       <div class="event-card-scrim"></div>
       <div class="event-card-body">
