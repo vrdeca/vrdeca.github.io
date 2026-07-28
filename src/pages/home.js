@@ -1,10 +1,16 @@
 import '../css/main.css';
 import { mountLayout } from '../js/layout.js';
 import { initHero } from '../js/hero.js';
+import { initCoinCutout } from '../js/coin-cutout.js';
 import { renderCalendarPreview } from '../js/calendar-preview.js';
 import { renderChart } from '../js/chart.js';
 
-mountLayout({ activePath: '/' });
-initHero();
+// Render dynamic content BEFORE mountLayout() so its data-reveal elements
+// exist in the DOM before mountLayout's scroll-reveal observer scans for them
+// — otherwise cards injected afterward never get observed and stay invisible.
 renderCalendarPreview(document.getElementById('calendar-preview-grid'));
 renderChart(document.getElementById('icdc-chart-wrap'));
+
+mountLayout({ activePath: '/' });
+initHero();
+initCoinCutout();

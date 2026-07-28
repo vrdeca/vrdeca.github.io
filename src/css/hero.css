@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100svh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   overflow: hidden;
   background: var(--color-black-900);
 }
@@ -46,9 +46,13 @@
 .hero-content {
   position: relative;
   z-index: 2;
-  padding-bottom: clamp(4rem, 10vh, 7rem);
-  padding-top: calc(var(--nav-height) + 4rem);
+  padding-inline: var(--space-6);
+  padding-top: var(--nav-height);
+  padding-bottom: var(--space-10);
   max-width: 780px;
+}
+@media (max-width: 640px) {
+  .hero-content { padding-inline: var(--space-4); }
 }
 .hero-content .eyebrow {
   color: var(--color-red-400);
@@ -89,9 +93,15 @@
   pointer-events: none;
 }
 .hero-coin video {
+  /* Hidden at runtime by coin-cutout.js, which draws chroma-keyed frames
+     to the canvas below instead — kept in the DOM as the frame source. */
   width: 100%; height: 100%;
   object-fit: contain;
-  mix-blend-mode: screen;
+}
+.hero-coin canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 @media (max-width: 720px) {
   .hero-coin { width: clamp(120px, 34vw, 200px); opacity: 0.9; }
