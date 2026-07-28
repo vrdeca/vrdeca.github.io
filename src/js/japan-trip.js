@@ -21,10 +21,6 @@ export function renderJapanTrip(container) {
             <a href="#contact" class="btn btn-ghost" data-contact-open>Ask About Fundraising</a>
           </div>
         </div>
-        <div class="japan-trip-mark" data-reveal aria-hidden="true">
-          <span>DECA</span>
-          <span>JAPAN</span>
-        </div>
       </div>
     </section>`;
 }
