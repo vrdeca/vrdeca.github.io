@@ -84,9 +84,12 @@
 
 .hero-coin {
   position: absolute;
-  right: clamp(-40px, -2vw, 20px);
-  bottom: clamp(-40px, -2vw, 10px);
-  width: clamp(180px, 22vw, 340px);
+  /* Positive-only offsets so the coin always sits fully inside the hero's
+     clipped bounds — negative values here previously let part of it get
+     cut off by .hero's overflow:hidden, breaking "above the fold." */
+  right: clamp(12px, 1.5vw, 32px);
+  bottom: clamp(20px, 3vw, 48px);
+  width: clamp(154px, 18.8vw, 291px);
   aspect-ratio: 1;
   z-index: 1;
   filter: drop-shadow(0 20px 50px rgba(0,0,0,0.55));
@@ -104,7 +107,7 @@
   display: block;
 }
 @media (max-width: 720px) {
-  .hero-coin { width: clamp(120px, 34vw, 200px); opacity: 0.9; }
+  .hero-coin { width: clamp(103px, 29.1vw, 171px); opacity: 0.9; }
 }
 
 .hero-scroll-cue {
