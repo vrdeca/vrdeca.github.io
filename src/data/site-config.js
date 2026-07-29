@@ -45,8 +45,8 @@ export const EXTERNAL_LINKS = {
 // Toggle JAPAN_TRIP_ENABLED off if the trip isn't happening this cycle.
 export const JAPAN_TRIP_ENABLED = true;
 export const JAPAN_TRIP = {
-  title: 'DECA Japan',
-  blurb: "A once-in-a-lifetime international trip for Vista Ridge DECA members — details, fundraising, and payment deadlines coming soon.",
+  title: 'Japan 2027',
+  blurb: 'Texas DECA and EF Tours are coordinating this international trip for Vista Ridge DECA members and their families.',
   deadline: 'Payment deadline TBD',
 };
 
