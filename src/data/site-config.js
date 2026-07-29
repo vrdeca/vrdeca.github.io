@@ -72,7 +72,7 @@ export const NAV_LINKS = [
 ];
 
 export const SOCIAL_LINKS = [
-  { label: 'Instagram', href: '#', icon: 'instagram' },
+  { label: 'Instagram', href: 'https://www.instagram.com/vistaridgedeca/', icon: 'instagram' },
   { label: 'Remind', href: '#', icon: 'bell' },
 ];
 
