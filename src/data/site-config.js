@@ -55,7 +55,6 @@ export const MARQUEE_ENABLED = true;
 
 export const MARQUEE_MESSAGES = [
   'Welcome to the new VRHS DECA site — under construction, updated often.',
-  'General Chapter Meeting — [Date] — Room [###]',
   'District CDC registration opens soon — talk to your officer team.',
 ];
 
