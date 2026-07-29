@@ -1,34 +1,12 @@
-import { EVENTS, TIER_LABELS } from '../data/events.js';
+import { EVENTS } from '../data/events.js';
 import { ICONS } from './icons.js';
+import { sortedEvents, renderEventListRows } from './event-list.js';
 
 const DOW = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
 
-function sortedEvents() {
-  return [...EVENTS].sort((a, b) => new Date(a.date) - new Date(b.date));
-}
-
 function renderList(container) {
-  const items = sortedEvents().map((ev) => {
-    const d = new Date(`${ev.date}T00:00:00`);
-    return `
-    <div class="event-list-row" id="${ev.id}" data-reveal>
-      <div class="date-badge">
-        <span class="month">${d.toLocaleDateString('en-US', { month: 'short' })}</span>
-        <span class="day">${d.getDate()}</span>
-      </div>
-      <div class="event-list-info">
-        <div class="event-list-tags"><span class="event-list-tag">${TIER_LABELS[ev.tier] || ev.tier}</span></div>
-        <h3>${ev.title}</h3>
-        ${ev.blurb ? `<p style="color:var(--color-text-muted);margin-bottom:var(--space-3);">${ev.blurb}</p>` : ''}
-        <div class="event-list-meta">
-          ${ev.time ? `<span>${ICONS.clock}${ev.time}</span>` : ''}
-          <span>${ICONS.pin}${ev.location || 'TBD'}</span>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-  container.innerHTML = `<div class="event-list">${items}</div>`;
+  container.innerHTML = `<div class="event-list">${renderEventListRows(sortedEvents())}</div>`;
 }
 
 function eventsByDateKey() {
