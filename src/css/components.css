@@ -658,7 +658,7 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
 .japan-trip-photo {
   position: absolute;
   inset: -32% 0;
-  background-image: url('/assets/images/japan-skyline.jpg');
+  background-image: url('/assets/images/japan-cherry-blossom.jpg');
   background-size: cover;
   background-position: right center;
   background-repeat: no-repeat;
