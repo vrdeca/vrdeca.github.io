@@ -25,6 +25,11 @@ export function initTiltCards(cards) {
 
   function applyTilt(card, rect, clientX, clientY) {
     card.classList.remove('is-resetting');
+    // Inline style beats any stylesheet rule regardless of specificity/order —
+    // needed because these cards also carry [data-reveal], whose own
+    // transition (for the scroll-in fade/slide) ties .tilt-card's specificity
+    // and wins on source order, silently smoothing every tilt update.
+    card.style.transition = 'none';
     const px = (clientX - rect.left) / rect.width;
     const py = (clientY - rect.top) / rect.height;
     const rotateY = (px - 0.5) * MAX_TILT_DEG * 2;
@@ -35,6 +40,9 @@ export function initTiltCards(cards) {
 
   function resetCard(card) {
     card.classList.add('is-resetting');
+    // Clear the inline override so the (higher-specificity) .is-resetting
+    // stylesheet rule can animate the snap-back.
+    card.style.transition = '';
     card.style.transform = '';
     card.style.zIndex = '';
   }
