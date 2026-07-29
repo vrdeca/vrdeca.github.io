@@ -51,6 +51,7 @@ export const EVENTS = [
     shortTitle: 'Leadership Summit',
     tier: 'leadership',
     date: '2026-09-08',
+    time: '8:00 AM – 3:00 PM',
     location: 'Reunion Ranch, Georgetown, TX',
     blurb: 'Officers-only summit to plan the semester ahead.',
   },
