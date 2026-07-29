@@ -650,6 +650,11 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   overflow: hidden;
   background: var(--color-brand-strong); /* fallback if JS/image fails */
   padding-block: var(--space-12);
+  /* Section height otherwise tracks copy content only, so on wide screens
+     the box gets very short relative to its width — fine for a landscape
+     photo, but it crops a tall subject (like a pagoda spire) out entirely.
+     Tying min-height to viewport width keeps the box reasonably square. */
+  min-height: clamp(480px, 42vw, 720px);
 }
 /* Photo lives in its own layer, taller than the section, so JS can
    translate it vertically on scroll (parallax) without ever exposing an
@@ -658,9 +663,9 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
 .japan-trip-photo {
   position: absolute;
   inset: -32% 0;
-  background-image: url('/assets/images/japan-cherry-blossom.jpg');
+  background-image: url('/assets/images/japan-pagoda-blossom.jpg');
   background-size: cover;
-  background-position: right center;
+  background-position: center top;
   background-repeat: no-repeat;
   will-change: transform;
 }
