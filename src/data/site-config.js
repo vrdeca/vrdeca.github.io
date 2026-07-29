@@ -47,7 +47,7 @@ export const JAPAN_TRIP_ENABLED = true;
 export const JAPAN_TRIP = {
   title: 'DECA Japan',
   blurb: "A once-in-a-lifetime international trip for Vista Ridge DECA members — details, fundraising, and payment deadlines coming soon.",
-  deadline: '[Payment deadline TBD]',
+  deadline: 'Payment deadline TBD',
 };
 
 // Turn the emergency marquee banner off by flipping this to false.
