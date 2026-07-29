@@ -12,7 +12,7 @@ export function renderJapanTrip(container) {
       <div class="japan-trip-scrim" aria-hidden="true"></div>
       <div class="container japan-trip-inner">
         <div class="japan-trip-copy" data-reveal>
-          <p class="eyebrow" style="color:var(--color-red-400);">Special trip</p>
+          <p class="eyebrow" style="color:var(--color-white);">Special trip</p>
           <h2>${JAPAN_TRIP.title}</h2>
           <p class="japan-trip-blurb">${JAPAN_TRIP.blurb}</p>
           <div class="japan-trip-meta">
