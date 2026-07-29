@@ -11,6 +11,12 @@ const FALLBACK_GRADIENT = {
   state: 'linear-gradient(135deg,#1a0507,#8c1522)',
   icdc: 'linear-gradient(135deg,#0a0a0b,#cb1a26)',
 };
+// card-icdc.jpg is a tall 9:16 graphic against the card's 4:5 box, so the
+// default center crop clips the "DECA" wordmark off the top — bias the
+// visible window upward so it stays in frame.
+const CARD_IMAGE_POSITION = {
+  icdc: 'center 15%',
+};
 
 function formatDateRange(ev) {
   const start = new Date(`${ev.date}T00:00:00`);
@@ -28,8 +34,9 @@ export function renderCalendarPreview(container) {
 
   container.innerHTML = featured.map((ev) => {
     const image = CARD_IMAGE[ev.tier];
+    const position = CARD_IMAGE_POSITION[ev.tier];
     const visual = image
-      ? `<img class="event-card-photo" src="${image}" alt="" loading="lazy" />`
+      ? `<img class="event-card-photo" src="${image}" alt="" loading="lazy"${position ? ` style="object-position:${position};"` : ''} />`
       : `<div style="position:absolute;inset:0;background:${FALLBACK_GRADIENT[ev.tier] || FALLBACK_GRADIENT.district};"></div>`;
 
     return `
