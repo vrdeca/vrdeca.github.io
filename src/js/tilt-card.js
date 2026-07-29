@@ -2,38 +2,70 @@
 // class (.tilt-card) rather than baked into .event-card generally, since
 // only specific card groups asked for this — the shared .event-card hover
 // elsewhere is left alone.
+//
+// Deliberately NOT using per-card mouseenter/mousemove/mouseleave listeners
+// (the first version of this did, and only the first card in each group
+// ever responded on a real device — the per-element browser hit-testing
+// for overlapping/3D-transformed siblings wasn't resolving to the card
+// actually under the cursor, and a z-index fix alone didn't resolve it).
+// Instead: one mousemove listener per group, and on every move we do our
+// own geometric containment check against each card's current
+// getBoundingClientRect() to decide which card (if any) the cursor is
+// over. That sidesteps the browser's hit-testing for this decision
+// entirely, so it can't be wrong the same way.
 const MAX_TILT_DEG = 9;
 const HOVER_SCALE = 1.05;
 
 export function initTiltCards(cards) {
+  const cardList = Array.from(cards);
+  if (!cardList.length) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  cards.forEach((card) => {
-    const apply = (e) => {
-      // Without this, only the card that happens to win default stacking
-      // order captures hover in any overlap zone — the scale+rotate combo
-      // (perspective foreshortening pushes the tilted edge out further than
-      // the scale alone) can extend just far enough into a neighboring
-      // card's box to "steal" its pointer events, which reads as "only the
-      // first card responds" even though every card's own listeners are
-      // wired up correctly.
-      card.style.zIndex = '5';
-      card.classList.remove('is-resetting');
-      const rect = card.getBoundingClientRect();
-      const px = (e.clientX - rect.left) / rect.width;
-      const py = (e.clientY - rect.top) / rect.height;
-      const rotateY = (px - 0.5) * MAX_TILT_DEG * 2;
-      const rotateX = (0.5 - py) * MAX_TILT_DEG * 2;
-      card.style.transform = `perspective(900px) scale(${HOVER_SCALE}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    };
-    const reset = () => {
-      card.classList.add('is-resetting');
-      card.style.transform = '';
-      card.style.zIndex = '';
-    };
+  let activeCard = null;
 
-    card.addEventListener('mouseenter', apply);
-    card.addEventListener('mousemove', apply);
-    card.addEventListener('mouseleave', reset);
-  });
+  function applyTilt(card, rect, clientX, clientY) {
+    card.classList.remove('is-resetting');
+    const px = (clientX - rect.left) / rect.width;
+    const py = (clientY - rect.top) / rect.height;
+    const rotateY = (px - 0.5) * MAX_TILT_DEG * 2;
+    const rotateX = (0.5 - py) * MAX_TILT_DEG * 2;
+    card.style.zIndex = '5';
+    card.style.transform = `perspective(900px) scale(${HOVER_SCALE}) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  }
+
+  function resetCard(card) {
+    card.classList.add('is-resetting');
+    card.style.transform = '';
+    card.style.zIndex = '';
+  }
+
+  function handleMove(e) {
+    let hit = null;
+    for (const card of cardList) {
+      const rect = card.getBoundingClientRect();
+      if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
+        hit = { card, rect };
+        break;
+      }
+    }
+
+    if (hit) {
+      if (activeCard && activeCard !== hit.card) resetCard(activeCard);
+      activeCard = hit.card;
+      applyTilt(hit.card, hit.rect, e.clientX, e.clientY);
+    } else if (activeCard) {
+      resetCard(activeCard);
+      activeCard = null;
+    }
+  }
+
+  function handleLeaveDocument() {
+    if (activeCard) {
+      resetCard(activeCard);
+      activeCard = null;
+    }
+  }
+
+  document.addEventListener('mousemove', handleMove, { passive: true });
+  document.documentElement.addEventListener('mouseleave', handleLeaveDocument, { passive: true });
 }
