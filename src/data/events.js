@@ -56,6 +56,15 @@ export const EVENTS = [
     blurb: 'Kickoff meeting — membership, calendar overview, and event sign-ups.',
   },
   {
+    id: 'fall-leadership-summit-2026',
+    title: 'Fall Leadership Summit',
+    shortTitle: 'Leadership Summit',
+    tier: 'leadership',
+    date: '2026-09-08',
+    location: 'Reunion Ranch, Georgetown, TX',
+    blurb: 'Officers-only summit to plan the semester ahead.',
+  },
+  {
     id: 'officer-apps-open',
     title: 'Officer Applications Open',
     shortTitle: 'Officer Apps',
