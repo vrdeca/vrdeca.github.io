@@ -55,7 +55,7 @@ export const MARQUEE_ENABLED = true;
 
 export const MARQUEE_MESSAGES = [
   'Welcome to the new VRHS DECA site — under construction, updated often.',
-  'District CDC registration opens soon — talk to your officer team.',
+  'Decision Day is quickly approaching — talk with your officer team for more info.',
 ];
 
 // import.meta.env.BASE_URL already ends in '/' (e.g. '/VistaRidgeDECA/' in
