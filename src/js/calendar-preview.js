@@ -2,7 +2,7 @@ import { EVENTS, TIER_LABELS } from '../data/events.js';
 import { initTiltCards } from './tilt-card.js';
 
 const CARD_IMAGE = {
-  district: '/assets/images/card-district.jpg',
+  district: '/assets/images/card-district.jpg?v=2',
   state: '/assets/images/card-state.jpg',
   icdc: '/assets/images/card-icdc.jpg',
 };
