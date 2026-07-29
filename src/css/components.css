@@ -426,7 +426,8 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   color: var(--color-text-muted);
   font-size: var(--fs-small);
 }
-.event-list-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.event-list-meta span { display: inline-flex; align-items: flex-start; gap: 6px; }
+.event-list-meta svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 0.2em; }
 
 @media (max-width: 600px) {
   .event-list-row { grid-template-columns: 1fr; }
