@@ -25,5 +25,6 @@ initCoinLoader();
 // listeners onto the calendar preview cards too.
 initTiltCards(document.querySelectorAll('#paths .tilt-card'));
 
-const interestFormLink = document.getElementById('interest-form-link');
-if (interestFormLink) interestFormLink.href = EXTERNAL_LINKS.interestForm;
+document.querySelectorAll('[data-interest-form-link]').forEach((el) => {
+  el.href = EXTERNAL_LINKS.interestForm;
+});

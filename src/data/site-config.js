@@ -36,7 +36,7 @@ export const ADVISORS = [
 // External links referenced from multiple pages — edit once here.
 export const EXTERNAL_LINKS = {
   minga: 'https://minga.io', // student portal used during flex time — replace with the chapter's actual Minga link
-  interestForm: '#', // Google Form for prospective-member interest — swap in the real link once it exists
+  interestForm: 'https://docs.google.com/forms/d/e/1FAIpQLSdOk3x0kZGzLHQbrshxS7uvPDMvCXuVKzKRk-v_6tOnERS8WA/viewform?usp=sharing&ouid=118327299535995420360',
   handbook: '#', // Chapter Handbook PDF, for transparency — swap in the real file link
   decaJapan: '#', // official DECA Japan trip page — swap in the real link
 };

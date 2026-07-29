@@ -82,6 +82,8 @@
   margin-bottom: var(--space-6);
 }
 
+.hero-actions { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+
 .hero-coin {
   position: absolute;
   /* Positive-only offsets so the coin always sits fully inside the hero's
