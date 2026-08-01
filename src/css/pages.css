@@ -380,3 +380,89 @@
 }
 .involve-meta span { display: inline-flex; align-items: center; gap: 6px; }
 .involve-meta svg { width: 1em; height: 1em; }
+
+/* Chapter Campaigns accordion — reuses .faq-list / .faq-item above for the
+   border, radius, spacing, and +/- chevron; this block only adds the icon +
+   two-line summary + rich body content on top of that. */
+
+/* Sparing, deliberate use of the DECA-Inc.-blue token: this eyebrow is the
+   one spot on the page describing DECA's *national* program rather than
+   the VRHS chapter itself, so the color swap actually means something. */
+.eyebrow-deca { color: var(--color-accent-blue); }
+
+.campaign-summary-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+.campaign-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.campaign-icon svg { width: 22px; height: 22px; }
+.campaign-title-group { display: flex; flex-direction: column; gap: 2px; }
+.campaign-title {
+  font-family: var(--font-body);
+  text-transform: none;
+  font-weight: 800;
+  font-size: var(--fs-body-lg);
+}
+.campaign-due {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.campaign-body { margin-top: var(--space-5); }
+.campaign-body > p { color: var(--color-text-muted); margin: 0 0 var(--space-4); }
+.campaign-lead { font-weight: 800; margin: var(--space-5) 0 var(--space-3); }
+
+.campaign-tip {
+  background: var(--color-cream);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  margin: var(--space-4) 0;
+}
+.campaign-tip .tip-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand-strong);
+  margin-bottom: var(--space-2);
+}
+.campaign-tip p { color: var(--color-text); margin: 0; font-size: var(--fs-small); }
+
+.campaign-ideas { display: flex; flex-direction: column; gap: var(--space-3); }
+.campaign-ideas li {
+  position: relative;
+  padding-left: var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+}
+.campaign-ideas li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand);
+}
+
+@media (max-width: 600px) {
+  .campaign-summary-left { gap: var(--space-3); }
+  .campaign-icon { width: 38px; height: 38px; }
+  .campaign-icon svg { width: 18px; height: 18px; }
+}
