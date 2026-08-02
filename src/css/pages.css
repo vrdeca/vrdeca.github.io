@@ -466,3 +466,148 @@
   .campaign-icon { width: 38px; height: 38px; }
   .campaign-icon svg { width: 18px; height: 18px; }
 }
+
+/* ==========================================================================
+   Event finder — interactive "find your event" quiz (see event-finder.js).
+   Recreates DECA's official event-selection flowchart as a click-through
+   wizard instead of a static image.
+   ========================================================================== */
+.event-finder {
+  position: relative;
+  background: linear-gradient(135deg, var(--color-black-900), var(--color-black-800));
+  border: 1px solid rgba(229, 35, 47, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-red-glow);
+  padding: var(--space-8);
+  max-width: 720px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.event-finder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(203, 26, 38, 0.22), transparent 60%);
+  pointer-events: none;
+}
+@media (max-width: 600px) { .event-finder { padding: var(--space-6) var(--space-5); } }
+
+.event-finder-progress {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+  margin-bottom: var(--space-6);
+}
+.event-finder-dot {
+  flex: 1;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.15);
+  transition: background var(--dur-slow) var(--ease-out-quart);
+}
+.event-finder-dot.is-filled { background: var(--color-brand); }
+
+.event-finder-back {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  z-index: 2;
+  display: none;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--color-silver-300);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--dur-base);
+}
+.event-finder-back svg { width: 16px; height: 16px; }
+.event-finder-back:hover { color: var(--color-white); }
+.event-finder-back.is-visible { display: inline-flex; }
+@media (max-width: 600px) { .event-finder-back { position: static; margin-bottom: var(--space-4); } }
+
+.event-finder-stage {
+  position: relative;
+  z-index: 1;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 220ms var(--ease-out-quart), transform 220ms var(--ease-out-quart);
+}
+.event-finder-stage[data-dir="forward"].is-leaving { opacity: 0; transform: translateX(-24px); }
+.event-finder-stage[data-dir="back"].is-leaving { opacity: 0; transform: translateX(24px); }
+.event-finder-stage[data-dir="forward"].is-entering { opacity: 0; transform: translateX(24px); }
+.event-finder-stage[data-dir="back"].is-entering { opacity: 0; transform: translateX(-24px); }
+
+.event-finder-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-red-400);
+  margin-bottom: var(--space-3);
+}
+.event-finder-question-title {
+  font-family: var(--font-display);
+  color: var(--color-white);
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  line-height: 1.15;
+  margin-bottom: var(--space-6);
+}
+
+.event-finder-options { display: flex; flex-direction: column; gap: var(--space-3); }
+.event-finder-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--dur-base), border-color var(--dur-base), transform var(--dur-base) var(--ease-out-quart);
+  animation: event-finder-option-in 420ms var(--ease-out-expo) backwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+.event-finder-option svg { width: 18px; height: 18px; flex-shrink: 0; transition: transform var(--dur-base) var(--ease-out-quart); }
+.event-finder-option:hover {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  transform: translateX(4px);
+}
+.event-finder-option:hover svg { transform: translateX(3px); }
+
+@keyframes event-finder-option-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.event-finder-result-title {
+  font-family: var(--font-display);
+  color: var(--color-white);
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  line-height: 1.15;
+  margin-bottom: var(--space-3);
+}
+.event-finder-result-desc { color: var(--color-silver-300); max-width: 52ch; margin-bottom: var(--space-6); }
+.event-finder-result-actions { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .event-finder-option { animation: none; }
+}
