@@ -31,7 +31,7 @@ export function renderContactModal() {
           <textarea id="cf-message" name="message" rows="3" required></textarea>
         </div>
         <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Message</button>
-        <p style="font-size:var(--fs-small);color:var(--color-text-muted);margin-top:var(--space-3);text-align:center;">This form isn't wired up to an inbox yet — for now, reach out directly to the chapter advisor in the footer.</p>
+        <p style="font-size:var(--fs-small);color:var(--color-text-muted);margin-top:var(--space-3);text-align:center;">This opens your email app with the message pre-filled, addressed to the chapter advisor.</p>
       </form>
     </div>
   </div>`;

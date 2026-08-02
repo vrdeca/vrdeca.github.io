@@ -3,6 +3,9 @@ import { renderFooter } from './footer.js';
 import { renderMarquee } from './marquee.js';
 import { renderContactModal } from './modal.js';
 import { initReveal } from './reveal.js';
+import { ADVISORS } from '../data/site-config.js';
+
+const CONTACT_EMAIL = ADVISORS[0].email;
 
 export function mountLayout({ activePath = '/' } = {}) {
   const headerRoot = document.getElementById('header-root');
@@ -77,7 +80,19 @@ function initContactModal() {
   });
   form?.addEventListener('submit', (e) => {
     e.preventDefault();
-    form.innerHTML = '<p style="font-weight:700;">Thanks — this form isn\'t connected yet, so nothing was sent. Please email the advisor directly for now (see footer).</p>';
+    const name = form.elements.name.value.trim();
+    const email = form.elements.email.value.trim();
+    const role = form.elements.role.value;
+    const message = form.elements.message.value.trim();
+
+    // Static site, no backend — hand off to the visitor's own mail client with
+    // the message pre-filled, addressed to the chapter advisor.
+    const subject = `Vista Ridge DECA website message — ${name}`;
+    const body = `Name: ${name}\nEmail: ${email}\nI am a: ${role}\n\n${message}`;
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+
+    form.innerHTML = '<p style="font-weight:700;">Opening your email app with this message pre-filled — send it from there to reach the advisor.</p>';
   });
 }
 
