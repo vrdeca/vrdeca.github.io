@@ -54,7 +54,6 @@ export const JAPAN_TRIP = {
 export const MARQUEE_ENABLED = true;
 
 export const MARQUEE_MESSAGES = [
-  'Welcome to the new VRHS DECA site — under construction, updated often.',
   'Decision Day is quickly approaching — talk with your officer team for more info.',
 ];
 
