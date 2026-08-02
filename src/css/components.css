@@ -532,7 +532,10 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   position: relative;
   overflow: hidden;
   background: var(--color-black-900);
-  padding-block: calc(var(--nav-height) + var(--space-10)) var(--space-12);
+  min-height: clamp(560px, 52vw, 720px);
+  display: flex;
+  align-items: center;
+  padding-block: calc(var(--nav-height) + var(--space-8)) var(--space-10);
 }
 .page-hero-photo {
   position: absolute;
@@ -549,7 +552,7 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
     rgba(10, 10, 11, 0.6) 55%,
     rgba(10, 10, 11, 0.05) 78%);
 }
-.page-hero-inner { position: relative; z-index: 1; }
+.page-hero-inner { position: relative; z-index: 1; width: 100%; }
 .page-hero-copy { max-width: 46ch; }
 .page-hero-copy .eyebrow { color: var(--color-red-400); }
 .page-hero-copy h1 {
