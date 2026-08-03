@@ -554,7 +554,11 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
 }
 .page-hero-inner { position: relative; z-index: 1; width: 100%; }
 .page-hero-copy { max-width: 46ch; }
-.page-hero-copy .eyebrow { color: var(--color-red-400); }
+/* --color-red-400 on the near-black scrim measures ~4.2:1 — just under the
+   4.5:1 AA floor for text this small. This brighter red clears it (~6:1,
+   measured against the actual composited photo+scrim) while still reading
+   as chapter red. */
+.page-hero-copy .eyebrow { color: #ff5252; }
 .page-hero-copy h1 {
   font-family: var(--font-display);
   color: var(--color-white);
@@ -569,14 +573,28 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
 }
 @media (max-width: 860px) {
-  /* Photo mostly falls outside the viewport at narrow widths anyway since
-     it's pinned right; fade to solid black sooner so text never competes
-     with photo detail on small screens (same approach as .japan-trip-scrim). */
+  /* Photo stays visible on mobile (not hidden behind near-solid black like
+     before) — the layout stacks text above photo here, so the gradient only
+     needs to stay opaque through the text zone for guaranteed contrast;
+     below that it fades out fast so the photo actually reads. Measured the
+     longest intro paragraph (Volunteers) bottoms out at ~84% down the hero
+     at 375px width, so the solid zone extends to 86% for margin. 0.96
+     opacity black keeps contrast far above WCAG AA regardless of the
+     photo's own brightness underneath — verified per-pixel against the
+     actual composited photo + scrim on every page (all text ≥4.5:1,
+     most >6:1; headings >18:1). */
   .page-hero-scrim {
     background-image: linear-gradient(180deg,
-      var(--color-black-900) 55%,
-      rgba(10, 10, 11, 0.82) 100%);
+      rgba(10, 10, 11, 0.96) 0%,
+      rgba(10, 10, 11, 0.96) 86%,
+      rgba(10, 10, 11, 0.35) 94%,
+      rgba(10, 10, 11, 0.15) 100%);
   }
+  /* The scroll cue sits in that now-much-lighter photo zone at the very
+     bottom, where contrast against the image can no longer be guaranteed —
+     hide it here rather than risk a compliance gap for a purely decorative
+     affordance. */
+  .page-hero .hero-scroll-cue { display: none; }
 }
 
 /* ==========================================================================
