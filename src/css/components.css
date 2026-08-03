@@ -268,7 +268,6 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   animation: marquee-scroll 32s linear infinite;
 }
 .marquee[data-paused="true"] .marquee-track { animation-play-state: paused; }
-.marquee:hover .marquee-track { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation-play-state: paused; }
 }
