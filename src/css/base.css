@@ -7,14 +7,19 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Reduced motion: turn off smooth-scroll and the handful of large-scale or
+   purely decorative effects that can genuinely disorient (parallax, the
+   coin-flip intro, the marquee's auto-scroll, the event-finder quiz's
+   slide transition, tilt-card's mouse-follow tilt — each opts out
+   individually, see their own JS/CSS). Deliberately NOT a blanket
+   animation-duration:0.01ms rule on every element: that also kills
+   ordinary UI feedback (button/card hover, scroll-reveal fades) that
+   isn't the kind of motion this preference is meant to address, and on
+   a Mac with "Reduce Motion" enabled in System Settings it read as the
+   whole site being frozen rather than just the few effects that should
+   back off. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
 }
 
 body {
