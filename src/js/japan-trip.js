@@ -8,7 +8,11 @@ export function renderJapanTrip(container) {
 
   container.innerHTML = `
     <section class="japan-trip-section" id="japan-trip">
-      <div class="japan-trip-photo" id="japan-trip-photo" aria-hidden="true"></div>
+      <div class="japan-trip-photo" id="japan-trip-photo" aria-hidden="true">
+        <div class="japan-trip-photo-layer japan-trip-photo-layer--shibuya"></div>
+        <div class="japan-trip-photo-layer japan-trip-photo-layer--blossoms"></div>
+        <div class="japan-trip-photo-layer japan-trip-photo-layer--pagoda"></div>
+      </div>
       <div class="japan-trip-scrim" aria-hidden="true"></div>
       <div class="container japan-trip-inner">
         <div class="japan-trip-copy" data-reveal>
