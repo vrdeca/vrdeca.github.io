@@ -15,9 +15,6 @@ export function renderJapanTrip(container) {
           <p class="eyebrow" style="color:var(--color-white);">Special trip</p>
           <h2>${JAPAN_TRIP.title}</h2>
           <p class="japan-trip-blurb">${JAPAN_TRIP.blurb}</p>
-          <div class="japan-trip-meta">
-            <span>${JAPAN_TRIP.deadline}</span>
-          </div>
           <div class="japan-trip-actions">
             <span class="japan-trip-meta">More info coming soon</span>
           </div>

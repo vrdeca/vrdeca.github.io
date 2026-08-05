@@ -47,7 +47,6 @@ export const JAPAN_TRIP_ENABLED = true;
 export const JAPAN_TRIP = {
   title: 'Japan 2027',
   blurb: 'Texas DECA and EF Tours are coordinating this international trip for Vista Ridge DECA members and their families.',
-  deadline: 'Payment deadline TBD',
 };
 
 // Turn the emergency marquee banner off by flipping this to false.
