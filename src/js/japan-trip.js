@@ -1,4 +1,4 @@
-import { JAPAN_TRIP_ENABLED, JAPAN_TRIP } from '../data/site-config.js';
+import { JAPAN_TRIP_ENABLED, JAPAN_TRIP, EXTERNAL_LINKS } from '../data/site-config.js';
 
 const PARALLAX_FACTOR = 0.22; // fraction of scroll delta the photo trails by — subtle, not disorienting
 const PARALLAX_MIN_WIDTH = 861; // matches the CSS breakpoint where the photo isn't really visible anyway
@@ -20,7 +20,8 @@ export function renderJapanTrip(container) {
           <h2>${JAPAN_TRIP.title}</h2>
           <p class="japan-trip-blurb">${JAPAN_TRIP.blurb}</p>
           <div class="japan-trip-actions">
-            <span class="japan-trip-meta">More info coming soon</span>
+            <a href="${JAPAN_TRIP.rsvpUrl}" class="btn btn-primary" target="_blank" rel="noopener">RSVP for the Info Meeting</a>
+            <a href="${EXTERNAL_LINKS.decaJapan}" class="btn btn-ghost" target="_blank" rel="noopener">View the Tour Site</a>
           </div>
         </div>
       </div>

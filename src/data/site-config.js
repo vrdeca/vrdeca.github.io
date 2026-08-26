@@ -38,7 +38,7 @@ export const EXTERNAL_LINKS = {
   minga: 'https://minga.io', // student portal used during flex time — replace with the chapter's actual Minga link
   interestForm: 'https://docs.google.com/forms/d/e/1FAIpQLSdOk3x0kZGzLHQbrshxS7uvPDMvCXuVKzKRk-v_6tOnERS8WA/viewform?usp=sharing&ouid=118327299535995420360',
   handbook: '#', // Chapter Handbook PDF, for transparency — swap in the real file link
-  decaJapan: '#', // official DECA Japan trip page — swap in the real link
+  decaJapan: 'http://www.eftours.com/3081961cw', // official EF Tours trip site
 };
 
 // DECA Japan trip — homepage feature section under the calendar cards.
@@ -47,6 +47,7 @@ export const JAPAN_TRIP_ENABLED = true;
 export const JAPAN_TRIP = {
   title: 'Japan 2027',
   blurb: 'Texas DECA and EF Tours are coordinating this international trip for Vista Ridge DECA members and their families.',
+  rsvpUrl: 'https://bit.ly/3TtlRED', // info meeting RSVP
 };
 
 // Turn the emergency marquee banner off by flipping this to false.
