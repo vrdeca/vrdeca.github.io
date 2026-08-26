@@ -436,16 +436,19 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
 
 /* Featured rows (District / State / ICDC) — the three conferences that
    actually matter for qualifying, now sitting in a list next to nine
-   General Meeting rows. A low-opacity diamond watermark (a rotated square,
-   echoing DECA's own diamond mark) bleeds off the top-right corner so
-   these three read as more important before anyone reads a word. */
+   General Meeting rows. These are DECA Inc.'s national conferences, not
+   Vista Ridge chapter programming, so they get the DECA-blue token
+   (same rule as the Chapter Campaigns eyebrow) instead of chapter red —
+   a low-opacity diamond watermark, a rotated square echoing DECA's own
+   diamond mark, bleeds off the top-right corner so these three read as
+   more important before anyone reads a word. */
 .event-list-row.is-featured {
   position: relative;
   z-index: 0;
   overflow: hidden;
-  border-color: rgba(203,26,38,0.3);
+  border-color: rgba(12,77,162,0.35);
 }
-.event-list-row.is-featured:hover { border-color: var(--color-brand); }
+.event-list-row.is-featured:hover { border-color: var(--color-accent-blue); }
 .event-list-row.is-featured::before,
 .event-list-row.is-featured::after {
   content: '';
@@ -458,9 +461,9 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   pointer-events: none;
   z-index: -1;
 }
-.event-list-row.is-featured::before { background: var(--color-brand); opacity: 0.055; }
-.event-list-row.is-featured::after { border: 1.5px solid var(--color-brand); opacity: 0.14; }
-.event-list-row.is-featured .event-list-tag { background: var(--color-brand); color: var(--color-white); }
+.event-list-row.is-featured::before { background: var(--color-accent-blue); opacity: 0.07; }
+.event-list-row.is-featured::after { border: 1.5px solid var(--color-accent-blue); opacity: 0.16; }
+.event-list-row.is-featured .event-list-tag { background: var(--color-accent-blue); color: var(--color-white); }
 
 @media (max-width: 600px) {
   .event-list-row { grid-template-columns: 1fr; }
@@ -527,7 +530,7 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
 /* Same "this one matters" signal as the list view, sized for a pill instead
    of a full card: solid fill instead of a watermark. */
 .cal-event-pill.is-featured {
-  background: var(--color-brand);
+  background: var(--color-accent-blue);
   color: var(--color-white);
 }
 @media (max-width: 720px) {
