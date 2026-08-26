@@ -27,9 +27,9 @@ export const ADVISORS = [
     role: 'Chapter Advisor',
   },
   {
-    name: '[Second Advisor Name]',
-    email: '[second.advisor@leanderisd.org]',
-    role: 'Chapter Advisor',
+    name: 'Tony Morales',
+    email: 'tony.morales@leanderisd.org',
+    role: 'Assistant Chapter Advisor',
   },
 ];
 
