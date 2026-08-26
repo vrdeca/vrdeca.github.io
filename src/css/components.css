@@ -448,6 +448,7 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   z-index: 0;
   overflow: hidden;
   border-color: rgba(12,77,162,0.35);
+  cursor: pointer;
 }
 .event-list-row.is-featured:hover { border-color: var(--color-accent-blue); }
 .event-list-row.is-featured::before {
@@ -516,6 +517,7 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
 .cal-cell.is-outside { background: var(--color-cream); color: var(--color-text-muted); }
 .cal-cell .cell-num { font-weight: 700; }
 .cal-event-pill {
+  display: block;
   margin-top: 4px;
   font-size: 0.68rem;
   font-weight: 700;
@@ -529,10 +531,17 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   cursor: default;
 }
 /* Same "this one matters" signal as the list view, sized for a pill instead
-   of a full card: solid fill instead of a watermark. */
+   of a full card: solid fill instead of a watermark. These pills are real
+   links to the event's detail page, so they get a pointer cursor and a
+   hover state the plain (non-featured) pills don't need. */
 .cal-event-pill.is-featured {
   background: var(--color-accent-blue);
   color: var(--color-white);
+  cursor: pointer;
+  transition: background var(--dur-base);
+}
+.cal-event-pill.is-featured:hover {
+  background: #0a3d82;
 }
 @media (max-width: 720px) {
   .cal-grid { grid-template-columns: repeat(7, minmax(38px,1fr)); }

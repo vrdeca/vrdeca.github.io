@@ -608,6 +608,119 @@
 .event-finder-result-desc { color: var(--color-silver-300); max-width: 52ch; margin-bottom: var(--space-6); }
 .event-finder-result-actions { display: flex; gap: var(--space-4); flex-wrap: wrap; }
 
+/* ==========================================================================
+   Event detail pages (District / State / ICDC only) — a compact photo
+   banner instead of the full-height .page-hero, so the facts, description,
+   and map below have a real shot at clearing the fold on a normal laptop
+   screen.
+   ========================================================================== */
+.event-detail-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-black-900);
+  min-height: clamp(300px, 34vw, 380px);
+  display: flex;
+  align-items: flex-end;
+  padding-block: calc(var(--nav-height) + var(--space-6)) var(--space-6);
+}
+.event-detail-hero-inner { position: relative; z-index: 1; width: 100%; }
+.event-detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-silver-300);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+.event-detail-back svg { width: 16px; height: 16px; }
+.event-detail-back:hover { color: var(--color-white); }
+.event-detail-tag {
+  display: inline-block;
+  background: var(--color-accent-blue);
+  color: var(--color-white);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35em 0.9em;
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-3);
+}
+.event-detail-hero h1 {
+  font-family: var(--font-display);
+  color: var(--color-white);
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  line-height: 1.05;
+  margin: 0 0 var(--space-2);
+  text-shadow: 0 2px 24px rgba(0,0,0,0.55);
+  max-width: 24ch;
+}
+.event-detail-date {
+  color: var(--color-silver-300);
+  font-size: var(--fs-body-lg);
+  font-weight: 700;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.45);
+}
+
+.event-detail-body { padding-block: var(--space-8) var(--space-10); }
+.event-detail-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+.event-detail-info {
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+/* Same watermark treatment as the featured calendar rows — the real DECA
+   diamond mark, tinted to the DECA-blue token, low opacity, bleeding off
+   the corner. */
+.event-detail-info::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 220px;
+  height: 220px;
+  background-image: url('/assets/images/deca-diamond-mark.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: -1;
+}
+.event-detail-facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+.event-detail-fact { display: flex; align-items: flex-start; gap: 10px; font-weight: 700; }
+.event-detail-fact svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--color-accent-blue); margin-top: 0.15em; }
+.event-detail-info h2 { font-size: var(--fs-h3); margin-bottom: var(--space-3); }
+.event-detail-info p { color: var(--color-text-muted); }
+
+.event-detail-map {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  min-height: 320px;
+}
+.event-detail-map iframe { width: 100%; height: 100%; min-height: 320px; border: 0; display: block; }
+
+@media (max-width: 860px) {
+  .event-detail-grid { grid-template-columns: 1fr; }
+  .event-detail-hero { min-height: 280px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .event-finder-option { animation: none; }
 }

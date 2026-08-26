@@ -40,7 +40,7 @@ export function renderCalendarPreview(container) {
       : `<div style="position:absolute;inset:0;background:${FALLBACK_GRADIENT[ev.tier] || FALLBACK_GRADIENT.district};"></div>`;
 
     return `
-    <a class="event-card tilt-card" href="${import.meta.env.BASE_URL}calendar/#${ev.id}" data-reveal>
+    <a class="event-card tilt-card" href="${import.meta.env.BASE_URL}${ev.detailPath || `calendar/#${ev.id}`}" data-reveal>
       ${visual}
       <div class="event-card-scrim"></div>
       <div class="event-card-body">

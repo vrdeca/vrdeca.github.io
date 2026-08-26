@@ -18,8 +18,13 @@ export function renderEventListRows(events) {
     const end = ev.endDate && ev.endDate !== ev.date ? new Date(`${ev.endDate}T00:00:00`) : null;
     const dayLabel = end ? `${d.getDate()}–${end.getDate()}` : `${d.getDate()}`;
     const featuredClass = ev.featured ? ' is-featured' : '';
+    // Only the three majors (District/State/ICDC) have a detail page — link
+    // the whole row there; everything else (General Meetings, FLS) stays a
+    // plain, non-clickable row.
+    const tag = ev.detailPath ? 'a' : 'div';
+    const hrefAttr = ev.detailPath ? ` href="${import.meta.env.BASE_URL}${ev.detailPath}"` : '';
     return `
-    <div class="event-list-row${featuredClass}" id="${ev.id}" data-reveal>
+    <${tag} class="event-list-row${featuredClass}" id="${ev.id}"${hrefAttr} data-reveal>
       <div class="date-badge${end ? ' is-range' : ''}">
         <span class="month">${d.toLocaleDateString('en-US', { month: 'short' })}</span>
         <span class="day">${dayLabel}</span>
@@ -33,6 +38,6 @@ export function renderEventListRows(events) {
           <span>${ICONS.pin}${ev.location || 'TBD'}</span>
         </div>
       </div>
-    </div>`;
+    </${tag}>`;
   }).join('');
 }

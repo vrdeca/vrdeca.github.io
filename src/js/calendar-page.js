@@ -50,7 +50,13 @@ function renderGrid(container, cursor) {
   const dow = DOW.map((d) => `<div class="cal-grid-dow">${d}</div>`).join('');
   const cellsHtml = cells.map((c) => {
     const evs = c.key ? byDate.get(c.key) || [] : [];
-    const pills = evs.map((ev) => `<div class="cal-event-pill${ev.featured ? ' is-featured' : ''}" title="${ev.title}">${ev.shortTitle}</div>`).join('');
+    // Only the three majors (District/State/ICDC) have a detail page —
+    // their pills link there; every other pill is just a label.
+    const pills = evs.map((ev) => {
+      const tag = ev.detailPath ? 'a' : 'div';
+      const hrefAttr = ev.detailPath ? ` href="${import.meta.env.BASE_URL}${ev.detailPath}"` : '';
+      return `<${tag} class="cal-event-pill${ev.featured ? ' is-featured' : ''}" title="${ev.title}"${hrefAttr}>${ev.shortTitle}</${tag}>`;
+    }).join('');
     return `<div class="cal-cell${c.outside ? ' is-outside' : ''}"><span class="cell-num">${c.dayNum}</span>${pills}</div>`;
   }).join('');
 

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>State CDC — Vista Ridge DECA</title>
+  <meta name="description" content="Everything about the Texas DECA State Career Development Conference: dates, location, what it is, and where to find it." />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <div id="header-root"></div>
+  <div id="marquee-root"></div>
+  <main id="main">
+    <!-- Keep in sync with the state-cdc-2027 entry in src/data/events.js
+         (date, time, location, description) — this page is hand-authored,
+         not rendered from that data, so it won't update itself. -->
+    <section class="event-detail-hero">
+      <div class="page-hero-photo" style="background-image:url('/assets/images/card-state.jpg');" aria-hidden="true"></div>
+      <div class="page-hero-scrim" aria-hidden="true"></div>
+      <div class="container event-detail-hero-inner">
+        <a href="%BASE_URL%calendar/" class="event-detail-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6"/></svg>Full calendar</a>
+        <span class="event-detail-tag">State</span>
+        <h1>Texas DECA State Career Development Conference</h1>
+        <p class="event-detail-date">February 25–27, 2027</p>
+      </div>
+    </section>
+
+    <section class="event-detail-body">
+      <div class="container">
+        <div class="event-detail-grid">
+          <div class="event-detail-info" data-reveal>
+            <div class="event-detail-facts">
+              <div class="event-detail-fact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+                <span>All Day</span>
+              </div>
+              <div class="event-detail-fact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+                <span>George R. Brown Convention Center, Houston, TX</span>
+              </div>
+            </div>
+            <h2>About State CDC</h2>
+            <p>The Texas DECA State Career Development Conference brings together the top-performing students from every district in the state for a second round of competition, along with leadership sessions, workshops, and networking with thousands of DECA members. Top finishers in each competitive event earn a spot at the DECA International Career Development Conference.</p>
+          </div>
+          <div class="event-detail-map" data-reveal>
+            <iframe
+              src="https://www.google.com/maps?q=George+R.+Brown+Convention+Center%2C+Houston%2C+TX&output=embed"
+              title="Map of George R. Brown Convention Center, Houston, TX"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="footer-root"></div>
+  <div id="modal-root"></div>
+  <script type="module" src="/src/pages/event-detail.js"></script>
+</body>
+</html>
