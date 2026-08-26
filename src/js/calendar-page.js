@@ -12,10 +12,16 @@ function renderList(container) {
 function eventsByDateKey() {
   const map = new Map();
   EVENTS.forEach((ev) => {
-    const key = ev.date;
-    const list = map.get(key) || [];
-    list.push(ev);
-    map.set(key, list);
+    // Multi-day events (District, State, ICDC) get a pill on every day they
+    // run, not just the start date, so the grid actually shows the span.
+    const start = new Date(`${ev.date}T00:00:00`);
+    const end = ev.endDate ? new Date(`${ev.endDate}T00:00:00`) : start;
+    for (const d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      const list = map.get(key) || [];
+      list.push(ev);
+      map.set(key, list);
+    }
   });
   return map;
 }
@@ -44,7 +50,7 @@ function renderGrid(container, cursor) {
   const dow = DOW.map((d) => `<div class="cal-grid-dow">${d}</div>`).join('');
   const cellsHtml = cells.map((c) => {
     const evs = c.key ? byDate.get(c.key) || [] : [];
-    const pills = evs.map((ev) => `<div class="cal-event-pill" title="${ev.title}">${ev.shortTitle}</div>`).join('');
+    const pills = evs.map((ev) => `<div class="cal-event-pill${ev.featured ? ' is-featured' : ''}" title="${ev.title}">${ev.shortTitle}</div>`).join('');
     return `<div class="cal-cell${c.outside ? ' is-outside' : ''}"><span class="cell-num">${c.dayNum}</span>${pills}</div>`;
   }).join('');
 
