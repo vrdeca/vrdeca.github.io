@@ -439,9 +439,10 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
    General Meeting rows. These are DECA Inc.'s national conferences, not
    Vista Ridge chapter programming, so they get the DECA-blue token
    (same rule as the Chapter Campaigns eyebrow) instead of chapter red —
-   a low-opacity diamond watermark, a rotated square echoing DECA's own
-   diamond mark, bleeds off the top-right corner so these three read as
-   more important before anyone reads a word. */
+   a low-opacity watermark of DECA's actual diamond mark (cropped from
+   the official badge art, recolored to this token) bleeds off the
+   top-right corner so these three read as more important before anyone
+   reads a word. */
 .event-list-row.is-featured {
   position: relative;
   z-index: 0;
@@ -449,20 +450,20 @@ body > #marquee-root .marquee { margin-top: var(--nav-height); }
   border-color: rgba(12,77,162,0.35);
 }
 .event-list-row.is-featured:hover { border-color: var(--color-accent-blue); }
-.event-list-row.is-featured::before,
-.event-list-row.is-featured::after {
+.event-list-row.is-featured::before {
   content: '';
   position: absolute;
-  top: -55px;
-  right: -55px;
-  width: 170px;
-  height: 170px;
-  transform: rotate(45deg);
+  top: -30px;
+  right: -30px;
+  width: 190px;
+  height: 190px;
+  background-image: url('/assets/images/deca-diamond-mark.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.12;
   pointer-events: none;
   z-index: -1;
 }
-.event-list-row.is-featured::before { background: var(--color-accent-blue); opacity: 0.07; }
-.event-list-row.is-featured::after { border: 1.5px solid var(--color-accent-blue); opacity: 0.16; }
 .event-list-row.is-featured .event-list-tag { background: var(--color-accent-blue); color: var(--color-white); }
 
 @media (max-width: 600px) {
