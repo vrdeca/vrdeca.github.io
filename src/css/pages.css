@@ -96,6 +96,8 @@
 @media (max-width: 900px) { .officer-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .officer-grid { grid-template-columns: 1fr; } }
 .officer-card {
+  position: relative;
+  overflow: hidden;
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -103,7 +105,7 @@
   text-align: center;
   transition: transform var(--dur-base) var(--ease-out-quart), box-shadow var(--dur-base);
 }
-.officer-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.officer-card:hover, .officer-card:focus-within { transform: translateY(-6px); box-shadow: var(--shadow-md); }
 .officer-avatar {
   width: 76px; height: 76px;
   border-radius: 50%;
@@ -127,6 +129,59 @@
   margin-bottom: var(--space-3);
 }
 .officer-card .bio { color: var(--color-text-muted); font-size: var(--fs-small); margin: 0; }
+
+/* Bio reveal — a dark curtain rises from the bottom of the card on hover
+   or keyboard focus, capped with a thin brand-red edge (the same red the
+   avatar gradient already ends on) so the reveal reads as part of the
+   chapter's identity rather than a bolted-on tooltip. The bio text lives
+   permanently in the DOM via .visually-hidden so it reaches screen reader
+   users with no hover required; this overlay's copy is aria-hidden so it
+   isn't announced a second time. */
+.officer-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  background: var(--color-black-900);
+  box-shadow: inset 0 3px 0 var(--color-brand);
+  transform: translateY(100%);
+  transition: transform var(--dur-slow) var(--ease-out-quart);
+}
+.officer-card:hover .officer-card-overlay,
+.officer-card:focus-within .officer-card-overlay {
+  transform: translateY(0);
+}
+.officer-card-overlay h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  font-size: 1rem;
+  color: var(--color-white);
+  margin: 0;
+}
+.officer-card-overlay .role {
+  display: block;
+  color: var(--color-white);
+  opacity: 0.62;
+  font-weight: 800;
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+.officer-card-overlay .officer-bio-text {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: var(--space-1) 0 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .officer-card-overlay { transition: none; }
+}
 
 /* Classroom-code / key-detail callout banner */
 .code-callout {
