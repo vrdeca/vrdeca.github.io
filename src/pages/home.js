@@ -4,7 +4,9 @@ import { initHero } from '../js/hero.js';
 import { initCoinLoader } from '../js/coin-loader.js';
 import { renderCalendarPreview } from '../js/calendar-preview.js';
 import { renderChart } from '../js/chart.js';
-import { renderJapanTrip } from '../js/japan-trip.js';
+// Japan section is off for hard launch. To bring it back: uncomment this
+// import, the renderJapanTrip() call below, and #japan-trip-root in index.html.
+// import { renderJapanTrip } from '../js/japan-trip.js';
 import { initTiltCards } from '../js/tilt-card.js';
 import { EXTERNAL_LINKS } from '../data/site-config.js';
 
@@ -13,7 +15,7 @@ import { EXTERNAL_LINKS } from '../data/site-config.js';
 // — otherwise cards injected afterward never get observed and stay invisible.
 renderCalendarPreview(document.getElementById('calendar-preview-grid'));
 renderChart(document.getElementById('icdc-chart-wrap'));
-renderJapanTrip(document.getElementById('japan-trip-root'));
+// renderJapanTrip(document.getElementById('japan-trip-root'));
 
 mountLayout({ activePath: '/' });
 initHero();
