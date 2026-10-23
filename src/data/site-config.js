@@ -54,7 +54,8 @@ export const JAPAN_TRIP = {
 export const MARQUEE_ENABLED = true;
 
 export const MARQUEE_MESSAGES = [
-  'Decision Day is quickly approaching — talk with your officer team for more info.',
+  'Texas Two-Step: Friday, October 23 — bring cans for donations! Deadline is Monday, October 26.',
+  'Trunk or Treat: Wednesday, October 28.',
 ];
 
 // import.meta.env.BASE_URL already ends in '/' (e.g. '/VistaRidgeDECA/' in
